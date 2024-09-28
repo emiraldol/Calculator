@@ -1,4 +1,7 @@
+import javax.swing.JFrame;
 
-public class View {
+public class View extends JFrame{
 
+	
+	
 }
