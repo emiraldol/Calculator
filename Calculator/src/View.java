@@ -1,19 +1,18 @@
 import javax.swing.JFrame;
-import java.awt.FlowLayout;
 import javax.swing.JPanel;
-import javax.swing.JTextPane;
 import javax.swing.JButton;
-import javax.swing.BoxLayout;
 import java.awt.GridLayout;
-import javax.swing.JEditorPane;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Dimension;
 
 public class View extends JFrame{
 	public View() {
-		getContentPane().setBackground(new Color(0, 0, 0));
+		setSize(new Dimension(449, 300));
+		setLocationRelativeTo(null);
+		getContentPane().setBackground(new Color(255, 255, 255));
 		setBackground(new Color(0, 0, 0));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Calculator");
@@ -27,10 +26,10 @@ public class View extends JFrame{
 		Background.setLayout(null);
 		
 		JPanel Buttons = new JPanel();
-		Buttons.setBackground(new Color(0, 255, 0));
-		Buttons.setBounds(10, 109, 414, 152);
+		Buttons.setBackground(new Color(255, 255, 255));
+		Buttons.setBounds(0, 109, 434, 152);
 		Background.add(Buttons);
-		Buttons.setLayout(new GridLayout(4, 5, 1, 1));
+		Buttons.setLayout(new GridLayout(5, 4, 0, 0));
 		
 		JButton C = new JButton("C");
 		Buttons.add(C);
@@ -100,5 +99,6 @@ public class View extends JFrame{
 		Result.setVerticalAlignment(SwingConstants.BOTTOM);
 		Result.setBounds(0, 61, 424, 37);
 		Background.add(Result);
+		this.setVisible(true);
 	}
 }
