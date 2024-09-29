@@ -24,43 +24,44 @@ public class Controller
 	
 	
 	
-	private void calculate()
+	private void calculate(String newInput)
 	{
 	
 		int index=0;
+		String newres="";
 		String operator="";
-		if(input.contains("*"))
+		if(newInput.contains("*"))
 		{
-			index=input.indexOf("*");
+			index=newInput.indexOf("*");
 			operator="*";
 		}
-		else if(input.contains("/"))
+		else if(newInput.contains("/"))
 		{
-			index=input.indexOf("/");
+			index=newInput.indexOf("/");
 			operator="/";
 			
 		}
-		else if(input.contains("+"))
+		else if(newInput.contains("+"))
 		{
-			index=input.indexOf("+");
+			index=newInput.indexOf("+");
 			operator="+";
 		}
-		else if(input.contains("-"))
+		else if(newInput.contains("-"))
 		{
-			index=input.indexOf("-");
+			index=newInput.indexOf("-");
 			operator="-";
 		}
 		else
 		{
-			window.Result.setText("="+input);
+			window.Result.setText("="+newInput);
 			return;
 		}
 
-		String array[]=input.split("");
+		String array[]=newInput.split("");
 		float num1=0;
 		float num2=0;
 		int lastindex=index;
-		int firstindex=-1;
+		int firstindex=index-1;
 		String reserve="";
 		for(int i=index-1;i>=0;i--)
 		{
@@ -72,9 +73,14 @@ public class Controller
 			else
 			{
 				
+				
 				break;
+				
 			}
 		}
+		StringBuffer sbr = new StringBuffer(reserve);
+		sbr.reverse();
+		reserve=sbr.toString();
 		num1=Float. valueOf(reserve);
 		if(index+1<array.length)
 		{
@@ -94,23 +100,33 @@ public class Controller
 			}
 			num2=Float. valueOf(reserve);
 		}
+		else
+		{
+			lastindex=index;
+			if(operator.equals("*")|| operator.equals("/"))
+			{
+				num2=1;
+			}
+			else if(operator.equals("+") || operator.equals("-"))
+			{
+				num2=0;
+			}
+		}
 		String result=module.Operations(operator, num1, num2);
-		String newInput="";
-		for(int i=0;i<input.length();i++)
+		for(int i=0;i<newInput.length();i++)
 		{
 			if(i==firstindex)
 			{
-				newInput+=result;
+				newres+=result;
 				i=lastindex;
 			}
 			else
 			{
-				newInput+=array[i];
+				newres+=array[i];
 			}
 		}
-		
-		input=newInput;
-		calculate();
+		newInput=newres;
+		calculate(newInput);
 	
 		
 		
@@ -143,7 +159,7 @@ public class Controller
 				
 				input+="1";
 				setInput("1");
-				calculate();
+				calculate(input);
 
 			}
 			else if(e.getSource()==window.Two)
@@ -151,7 +167,7 @@ public class Controller
 				
 				input+="2";
 				setInput("2");
-				calculate();
+				calculate(input);
 
 			}
 			else if(e.getSource()==window.Three)
@@ -159,72 +175,90 @@ public class Controller
 				
 				input+="3";
 				setInput("3");
-				calculate();
+				calculate(input);
 			}
 			else if(e.getSource()==window.Four)
 			{
 				
 				input+="4";
 				setInput("4");
-				calculate();
+				calculate(input);
 			}
 			else if(e.getSource()==window.Five)
 			{
 				
 				input+="5";
 				setInput("5");
-				calculate();
+				calculate(input);
 			}
 			else if(e.getSource()==window.Six)
 			{
 				
 				input+="6";
 				setInput("6");
-				calculate();
+				calculate(input);
 			}
 			else if(e.getSource()==window.Seven)
 			{
 				
 				input+="7";
 				setInput("7");
-				calculate();
+				calculate(input);
 			}
 			else if(e.getSource()==window.Eight)
 			{
 				
 				input+="8";
 				setInput("8");
-				calculate();
+				calculate(input);
 			}
 			else if(e.getSource()==window.Nine)
 			{
 				
 				input+="9";
 				setInput("9");
-				calculate();
+				calculate(input);
+			}
+			else if(e.getSource()==window.Zero)
+			{
+				
+				input+="0";
+				setInput("0");
+				calculate(input);
 			}
 			else if(e.getSource()==window.Multiplication)
 			{
 				input+="*";
 				setInput("*");
+				calculate(input);
 				
 			}
 			else if(e.getSource()==window.Addition)
 			{
 				input+="+";
 				setInput("+");
+				calculate(input);
 				
 			}
 			else if(e.getSource()==window.Substraction)
 			{
-				input+="+";
-				setInput("+");
+				input+="-";
+				setInput("-");
+				calculate(input);
 				
 			}
 			else if(e.getSource()==window.Division)
 			{
-				input+="+";
-				setInput("+");
+				input+="/";
+				setInput("/");
+				calculate(input);
+				
+			}
+			else if(e.getSource()==window.C)
+			{
+				input="";
+				window.Input.setText("0");
+				window.Result.setText("0");
 				
 			}
 			
