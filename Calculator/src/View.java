@@ -2,13 +2,84 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Dimension;
+import javax.swing.JTextField;
 
 public class View extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	JTextField Input;
+	JButton C = new JButton("C");
+	JButton Delete = new JButton("Delete");
+	JButton Remaining = new JButton("%");
+	JButton Division = new JButton("/");
+	JButton Seven = new JButton("7");
+	JButton Eight = new JButton("8");
+	JButton Nine = new JButton("9");
+	JButton Four = new JButton("4");
+	JButton Five = new JButton("5");
+	JButton Multiplication = new JButton("X");
+	JButton Six = new JButton("6");
+	JButton Substraction = new JButton("-");
+	JButton One = new JButton("1");
+	JButton Two = new JButton("2");
+	JButton Three = new JButton("3");
+	JButton Addition = new JButton("+");
+	JButton btnOut = new JButton("out");
+	JButton Zero = new JButton("0");
+	JButton Comma = new JButton(",");
+	JButton result = new JButton("=");
+	JLabel Result = new JLabel("0");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	public void setActionListeners(ActionListener ButtonHandler)
+	{
+		this.C.addActionListener(ButtonHandler);
+		this.Delete.addActionListener(ButtonHandler);
+		this.Remaining.addActionListener(ButtonHandler);
+		this.Division.addActionListener(ButtonHandler);
+		this.Seven.addActionListener(ButtonHandler);
+		this.Eight.addActionListener(ButtonHandler);
+		this.Nine.addActionListener(ButtonHandler);
+		this.Four.addActionListener(ButtonHandler);
+		this.Five.addActionListener(ButtonHandler);
+		this.Multiplication.addActionListener(ButtonHandler);
+		this.Six.addActionListener(ButtonHandler);
+		this.Substraction.addActionListener(ButtonHandler);
+		this.One.addActionListener(ButtonHandler);
+		this.Two.addActionListener(ButtonHandler);
+		this.Three.addActionListener(ButtonHandler);
+		this.Addition.addActionListener(ButtonHandler);
+		this.btnOut.addActionListener(ButtonHandler);
+		this.Zero.addActionListener(ButtonHandler);
+		this.Comma.addActionListener(ButtonHandler);
+		this.result.addActionListener(ButtonHandler);
+
+
+
+
+	}
 	public View() {
 		setSize(new Dimension(449, 300));
 		setLocationRelativeTo(null);
@@ -30,68 +101,28 @@ public class View extends JFrame{
 		Buttons.setBounds(0, 109, 434, 152);
 		Background.add(Buttons);
 		Buttons.setLayout(new GridLayout(5, 4, 0, 0));
-		
-		JButton C = new JButton("C");
+	
 		Buttons.add(C);
-		
-		JButton delete = new JButton("Delete");
-		Buttons.add(delete);
-		
-		JButton upoloipo = new JButton("%");
-		Buttons.add(upoloipo);
-		
-		JButton dia = new JButton("/");
-		Buttons.add(dia);
-		
-		JButton epta = new JButton("7");
-		Buttons.add(epta);
-		
-		JButton eight = new JButton("8");
-		Buttons.add(eight);
-		
-		JButton nine = new JButton("9");
-		Buttons.add(nine);
-		
-		JButton multi = new JButton("X");
-		Buttons.add(multi);
-		
-		JButton four = new JButton("4");
-		Buttons.add(four);
-		
-		JButton five = new JButton("5");
-		Buttons.add(five);
-		
-		JButton six = new JButton("6");
-		Buttons.add(six);
-		
-		JButton minus = new JButton("-");
-		Buttons.add(minus);
-		
-		JButton one = new JButton("1");
-		Buttons.add(one);
-		
-		JButton two = new JButton("2");
-		Buttons.add(two);
-		
-		JButton three = new JButton("3");
-		Buttons.add(three);
-		
-		JButton plus = new JButton("+");
-		Buttons.add(plus);
-		
-		JButton btnOut = new JButton("out");
+		Buttons.add(Delete);
+		Buttons.add(Remaining);
+		Buttons.add(Division);
+		Buttons.add(Seven);
+		Buttons.add(Eight);
+		Buttons.add(Nine);
+		Buttons.add(Multiplication);
+		Buttons.add(Four);
+		Buttons.add(Five);
+		Buttons.add(Six);	
+		Buttons.add(Substraction);
+		Buttons.add(One);
+		Buttons.add(Two);
+		Buttons.add(Three);
+		Buttons.add(Addition);
 		Buttons.add(btnOut);
-		
-		JButton zero = new JButton("0");
-		Buttons.add(zero);
-		
-		JButton comma = new JButton(",");
-		Buttons.add(comma);
-		
-		JButton result = new JButton("=");
+		Buttons.add(Zero);
+		Buttons.add(Comma);
 		Buttons.add(result);
-		
-		JLabel Result = new JLabel("0");
+
 		Result.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Result.setForeground(new Color(255, 255, 255));
 		Result.setBackground(new Color(255, 255, 255));
@@ -99,6 +130,16 @@ public class View extends JFrame{
 		Result.setVerticalAlignment(SwingConstants.BOTTOM);
 		Result.setBounds(0, 61, 424, 37);
 		Background.add(Result);
+		
+		Input = new JTextField();
+		Input.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Input.setForeground(new Color(255, 255, 255));
+		Input.setText("0");
+		Input.setBackground(new Color(0, 0, 0));
+		Input.setHorizontalAlignment(SwingConstants.RIGHT);
+		Input.setBounds(0, 11, 434, 42);
+		Background.add(Input);
+		Input.setColumns(10);
 		this.setVisible(true);
 	}
 }
