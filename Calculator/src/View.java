@@ -11,7 +11,8 @@ import java.awt.Font;
 import java.awt.Dimension;
 import javax.swing.JTextField;
 
-public class View extends JFrame{
+public class View extends JFrame
+{
 	/**
 	 * 
 	 */
@@ -42,18 +43,8 @@ public class View extends JFrame{
 
 
 
-
-
-
-
-
-
-
-
-
-
 	
-	public void setActionListeners(ActionListener ButtonHandler)
+	 void setActionListeners(ActionListener ButtonHandler)
 	{
 		this.C.addActionListener(ButtonHandler);
 		this.Delete.addActionListener(ButtonHandler);
@@ -80,7 +71,8 @@ public class View extends JFrame{
 
 
 	}
-	public View() {
+	public View() 
+	{
 		setSize(new Dimension(449, 300));
 		setLocationRelativeTo(null);
 		getContentPane().setBackground(new Color(255, 255, 255));
