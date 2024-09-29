@@ -2,7 +2,7 @@
 public class Model 
 {
 	
-	String calculations(String operation,float num1,float num2)
+	String Operations(String operation,float num1,float num2)
 	{
 		String result="";
 		float resnum=0;
