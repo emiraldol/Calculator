@@ -2,7 +2,7 @@
 public class Model 
 {
 	
-	String Operations(String operation,float num1,float num2)
+	String Operations(String operation,float num1,float num2)throws ArithmeticException
 	{
 		String result="";
 		float resnum=0;
@@ -21,7 +21,16 @@ public class Model
 		}
 		else if(operation.equals("/"))
 		{
-			resnum=num1/num2;
+			if(num2==0)
+			{
+				throw new ArithmeticException();
+				
+			}
+			else
+			{
+				resnum=num1/num2;
+			}
+			
 		}
 		if(isInteger(resnum))
 		{

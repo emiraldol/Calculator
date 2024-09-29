@@ -28,6 +28,7 @@ public class Controller
 	{
 	
 		int index=0;
+		String result="";
 		String newres="";
 		String operator="";
 		if(newInput.contains("*"))
@@ -112,7 +113,15 @@ public class Controller
 				num2=0;
 			}
 		}
-		String result=module.Operations(operator, num1, num2);
+		try
+		{
+			result=module.Operations(operator, num1, num2);
+		}
+		catch(ArithmeticException e)
+		{
+			window.Result.setText("Can't Devide By Zero");
+			return;
+		}
 		for(int i=0;i<newInput.length();i++)
 		{
 			if(i==firstindex)
@@ -127,13 +136,15 @@ public class Controller
 		}
 		newInput=newres;
 		calculate(newInput);
+
+	}
+	//!TODO TO FIX ZERO 
+	//!TODO ADD MORE FEATURES
+	//!TODO ADD ICONS
 	
-		
-		
-		
-		
-		
 	
+	public static String removeLastCharRegex(String s) {
+	    return (s == null) ? null : s.replaceAll(".$", "");
 	}
 	
 	void setInput(String num)
@@ -221,10 +232,13 @@ public class Controller
 			}
 			else if(e.getSource()==window.Zero)
 			{
+				if(!input.equals("0"))
+				{
+					input+="0";
+					setInput("0");
+					calculate(input);
+				}
 				
-				input+="0";
-				setInput("0");
-				calculate(input);
 			}
 			else if(e.getSource()==window.Multiplication)
 			{
@@ -259,6 +273,18 @@ public class Controller
 				input="";
 				window.Input.setText("0");
 				window.Result.setText("0");
+				
+			}
+			else if(e.getSource()==window.Delete)
+			{
+				input=removeLastCharRegex(input);
+				if(input.equals(""))
+				{
+					input="";
+					window.Result.setText("0");
+				}
+				window.Input.setText(input);
+				calculate(input);
 				
 			}
 			
