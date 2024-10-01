@@ -2,24 +2,40 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashSet;
 
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
+
+
+/*
+ * !TODO CREATE A FUNCTION TO REMOVE ZERO IF IT IS ONLY ZERO
+ * !TODO CREATE A FUNCTION TO NOT ALLOW MULTIPLE OPERATIONS CLICKED
+ * !TODO FIX THE NAME OF TESTING AND ADD THE FEATURES OF SIMPLE CALCULATOR
+ * !TODO ADD THE MORE BUTTONS TO THE VIEW AND MAKE THEM DO OPERATIONS
+ * !TODO FIX SOME BUGS IN CALCULATE METHOD!
+ * 
+ */
 public class Controller 
 {
 	
 	View window;
 	Model module;
 	String input="";
+	boolean operator=false;
 	HashSet<String>operators;
 	
 	Controller()
 	{
 		operators=new HashSet<>();
-		operators.add("x");
+		operators.add("*");
 		operators.add("/");
 		operators.add("+");
 		operators.add("%");
+		operators.add("-");
 		module=new Model();
 		window=new View();
 		window.setActionListeners(new ButtonHandler());
+		window.setDocumentListener(new Testing());
 	}
 	
 	
@@ -59,8 +75,8 @@ public class Controller
 		}
 
 		String array[]=newInput.split("");
-		float num1=0;
-		float num2=0;
+		double num1=0;
+		double num2=0;
 		int lastindex=index;
 		int firstindex=index-1;
 		String reserve="";
@@ -73,16 +89,13 @@ public class Controller
 			}
 			else
 			{
-				
-				
-				break;
-				
+				break;	
 			}
 		}
 		StringBuffer sbr = new StringBuffer(reserve);
 		sbr.reverse();
 		reserve=sbr.toString();
-		num1=Float. valueOf(reserve);
+		num1=Double.valueOf(reserve);
 		if(index+1<array.length)
 		{
 			reserve="";
@@ -94,12 +107,11 @@ public class Controller
 					lastindex=i;
 				}
 				else
-				{
-					
+				{					
 					break;
 				}
 			}
-			num2=Float. valueOf(reserve);
+			num2=Double.valueOf(reserve);
 		}
 		else
 		{
@@ -138,25 +150,50 @@ public class Controller
 		calculate(newInput);
 
 	}
-	//!TODO TO FIX ZERO 
-	//!TODO ADD MORE FEATURES
-	//!TODO ADD ICONS
+	
+	
 	
 	
 	public static String removeLastCharRegex(String s) {
 	    return (s == null) ? null : s.replaceAll(".$", "");
 	}
 	
+	
+	
+	
 	void setInput(String num)
 	{
 		if(window.Input.getText().equals("0"))
 		{
 			window.Input.setText(num);
+			input=num;
 		}
 		else
 		{
+			input+=num;
 			window.Input.setText(window.Input.getText()+num);
 		}
+	}
+	
+	
+	class Testing implements DocumentListener
+	{
+
+		@Override
+		public void insertUpdate(DocumentEvent e) {
+			
+		}
+
+		@Override
+		public void removeUpdate(DocumentEvent e) {
+
+		}
+
+		@Override
+		public void changedUpdate(DocumentEvent e) {
+
+		}
+		
 	}
 	
 	class ButtonHandler implements ActionListener
@@ -168,65 +205,61 @@ public class Controller
 			if(e.getSource()==window.One)
 			{
 				
-				input+="1";
 				setInput("1");
+				operator=true;
 				calculate(input);
 
 			}
 			else if(e.getSource()==window.Two)
 			{
 				
-				input+="2";
 				setInput("2");
+				operator=true;
 				calculate(input);
 
 			}
 			else if(e.getSource()==window.Three)
 			{
 				
-				input+="3";
 				setInput("3");
+				operator=true;
 				calculate(input);
 			}
 			else if(e.getSource()==window.Four)
 			{
 				
-				input+="4";
 				setInput("4");
+				operator=true;
 				calculate(input);
 			}
 			else if(e.getSource()==window.Five)
 			{
 				
-				input+="5";
 				setInput("5");
+				operator=true;
 				calculate(input);
 			}
 			else if(e.getSource()==window.Six)
 			{
-				
-				input+="6";
+				operator=true;
 				setInput("6");
 				calculate(input);
 			}
 			else if(e.getSource()==window.Seven)
 			{
-				
-				input+="7";
+				operator=true;
 				setInput("7");
 				calculate(input);
 			}
 			else if(e.getSource()==window.Eight)
 			{
-				
-				input+="8";
+				operator=true;
 				setInput("8");
 				calculate(input);
 			}
 			else if(e.getSource()==window.Nine)
 			{
-				
-				input+="9";
+				operator=true;
 				setInput("9");
 				calculate(input);
 			}
@@ -234,7 +267,6 @@ public class Controller
 			{
 				if(!input.equals("0"))
 				{
-					input+="0";
 					setInput("0");
 					calculate(input);
 				}
@@ -242,30 +274,47 @@ public class Controller
 			}
 			else if(e.getSource()==window.Multiplication)
 			{
-				input+="*";
-				setInput("*");
-				calculate(input);
+				if(operator)
+				{
+					setInput("*");
+					operator=false;
+					calculate(input);
+				}
+				
 				
 			}
 			else if(e.getSource()==window.Addition)
 			{
-				input+="+";
-				setInput("+");
-				calculate(input);
+				if(operator)
+				{
+					setInput("+");
+					calculate(input);
+					operator=false;
+					
+				}
 				
 			}
 			else if(e.getSource()==window.Substraction)
 			{
-				input+="-";
-				setInput("-");
-				calculate(input);
-				
+
+				if(operator)
+				{
+					setInput("-");
+					calculate(input);
+					operator=false;
+				}
 			}
 			else if(e.getSource()==window.Division)
 			{
-				input+="/";
-				setInput("/");
-				calculate(input);
+
+				if(operator)
+				{
+					setInput("/");
+					calculate(input);
+					operator=false;
+					
+				}
+				
 				
 			}
 			else if(e.getSource()==window.C)
@@ -278,10 +327,19 @@ public class Controller
 			else if(e.getSource()==window.Delete)
 			{
 				input=removeLastCharRegex(input);
+				String arr[]=input.split("");
+				if(operators.contains(arr[arr.length-1]))
+				{
+					operator=false;
+				}
+				else
+				{
+					operator=true;
+				}
 				if(input.equals(""))
 				{
 					input="";
-					window.Result.setText("0");
+					window.Result.setText("=0");
 				}
 				window.Input.setText(input);
 				calculate(input);

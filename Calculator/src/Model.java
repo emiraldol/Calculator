@@ -2,10 +2,10 @@
 public class Model 
 {
 	
-	String Operations(String operation,float num1,float num2)throws ArithmeticException
+	String Operations(String operation,double num1,double num2)throws ArithmeticException
 	{
 		String result="";
-		float resnum=0;
+		double resnum=0;
 		
 		if(operation.equals("+"))
 		{
@@ -38,7 +38,7 @@ public class Model
 			result=Integer.toString(res);
 			return result;
 		}
-		result=Float.toString(resnum);
+		result=Double.toString(resnum);
 		return result;
 		
 	}

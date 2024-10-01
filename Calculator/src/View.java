@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.event.DocumentListener;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Dimension;
@@ -42,6 +44,11 @@ public class View extends JFrame
 
 
 
+	
+	void setDocumentListener(DocumentListener test)
+	{
+		Input.getDocument().addDocumentListener(test);
+	}
 
 	
 	 void setActionListeners(ActionListener ButtonHandler)
